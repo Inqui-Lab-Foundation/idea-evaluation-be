@@ -185,6 +185,16 @@ export const constents = {
     },
     default: "ALL"
   },
+  evaluation_flags:{
+    list: {
+      "DRAFT": "DRAFT",
+      "SUBMITTED": "SUBMITTED",
+      "EVALUATION": "EVALUATION",
+      "SELECTEDROUND1": "SELECTEDROUND1",
+      "REJECTEDROUND1": "REJECTEDROUND1"
+    },
+    default: "DRAFT"
+  },
   TEAMS_MAX_STUDENTS_ALLOWED: 5,
   ALPHA_NUMERIC_PATTERN : /^[a-zA-Z0-9 ]*$/,
   TRANSLATION_CONFIG:{

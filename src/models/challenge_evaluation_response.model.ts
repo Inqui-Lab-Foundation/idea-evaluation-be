@@ -5,22 +5,24 @@ import { challenge } from './challenge.model';
 import { user } from './user.model';
 
 
-export class challenge_evaluater extends Model<InferAttributes<challenge_evaluater>, InferCreationAttributes<challenge_evaluater>> {
+export class challenge_evaluation_response extends Model<InferAttributes<challenge_evaluation_response>, InferCreationAttributes<challenge_evaluation_response>> {
     
-    declare challenge_evaluater_id: CreationOptional<number>;
+    declare challenge_evaluation_response_id: CreationOptional<number>;
     declare challenge_id: number;
     declare eval_user_id: number;
     // declare badge_no: number;
     declare level: string;
+    declare responses: string;
+    declare score: number;
     declare status: CreationOptional<Enumerator>;
     declare created_by: CreationOptional<number>;
     declare created_at: CreationOptional<Date>;
     declare updated_by: CreationOptional<number>;
     declare updated_at: CreationOptional<Date>;
     
-    static modelTableName = "challenge_evaluaters";
+    static modelTableName = "challenge_evaluation_responses";
     static structrue:any =  {
-        challenge_evaluater_id: {
+        challenge_evaluation_response_id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
@@ -41,6 +43,16 @@ export class challenge_evaluater extends Model<InferAttributes<challenge_evaluat
         },
         level: {
             type: DataTypes.STRING,
+        },
+        responses: {
+            type: DataTypes.TEXT("long"),
+        },
+        score: {
+            type: DataTypes.INTEGER,
+        },
+        is_accepted: {
+            type: DataTypes.ENUM(...Object.values(constents.evaluation_flags.list)),
+            defaultValue: constents.evaluation_flags.default
         },
         status: {
             type: DataTypes.ENUM(...Object.values(constents.common_status_flags.list)),
@@ -72,11 +84,11 @@ export class challenge_evaluater extends Model<InferAttributes<challenge_evaluat
 
 }
 
-challenge_evaluater.init(
-    challenge_evaluater.structrue,
+challenge_evaluation_response.init(
+    challenge_evaluation_response.structrue,
     {
         sequelize: db,
-        tableName: challenge_evaluater.modelTableName,
+        tableName: challenge_evaluation_response.modelTableName,
         timestamps: true,
         updatedAt: 'updated_at',
         createdAt: 'created_at',
